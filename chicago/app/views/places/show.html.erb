@@ -26,7 +26,7 @@
 
 <p>
   <span class="price">Admission Price: <%= number_to_currency @place.price/100 %></span>
-  <%= link_to "Edit", "/places/#{@place.id}/edit" %>
+  <%= link_to "Edit", edit_place_url(@place.id) %>
 </p>
 
 <div>
@@ -37,23 +37,20 @@
 <h3 style="clear:both; margin-top: 100px">Reviews</h3>
 
 <p>Write a review</p>
-<form action="/reviews/<%= @place.id %>/submit_new">
-  <select name="rating">
-    <option>5 star</option>
-    <option>4 star</option>
-    <option>3 star</option>
-    <option>2 star</option>
-    <option>1 star</option>
-  </select>
-  <input name="desc" size="50">
-  <button>Submit</button>
-</form>
 
-<% Review.where(place_id: @place.id).order('id desc').each do |review| %>
+<%= form_tag new_review_url(@place.id), :method => 'post' do %>
+  <%= select_tag "rating", "<option>5 star</option><option>4 star</option><option>3 star</option><option>2 star</option><option>1 star</option>".html_safe %>
+  <div>
+    <label for="desc"></label>
+    <input size="50" name="desc" id="desc">
+  </div>
+  <input type="submit" name="commit" value="Add Review">
+<% end %>
+
+<% @reviews.each do |review| %>
   <p>
     <strong><%= ("&#9733;" * review.rating).html_safe  %></strong>
     <%= review.desc %>
-
   </p>
 <% end %>
 

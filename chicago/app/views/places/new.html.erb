@@ -4,11 +4,26 @@
 
 <h2>Add a New Place</h2>
 
-<form action="/places/submit_new">
-  <p><label>Title:</label> <input name="title" size="30"></p>
-  <p><label>Photo URL:</label> <input name="url" size="80"></p>
-  <p><label>Price:</label> <input name="price"></p>
-  <p><label>Description:</label></p>
-  <textarea name="desc" cols="80" rows="3"></textarea>
-  <p><button>Submit</button></p>
-</form>
+<%= form_tag places_url, :method => 'post' do %>
+  <div>
+    <label for="title">Title:</label>
+    <input size="30" name="title" id="title" placeholder="Example: Sears Tower">
+  </div>
+
+  <div>
+    <label for="photo_url">Photo URL:</label>
+    <input size="80" name="photo_url" id="photo_url" placeholder="Example: http://www3.jjc.edu/ftp/wdc13/rturza/pictures/Sears_Tower.jpg">
+  </div>
+
+  <div>
+    <label for="price">Price:</label>
+    <input size="4" name="price" id="price">
+  </div>
+
+  <div>
+    <textarea cols="80" rows="3" name="desc"></textarea>
+  </div>
+
+  <input type="submit" name="commit" value="Add Place">
+<% end %>
+
