@@ -21,7 +21,8 @@
   </div>
 
   <div>
-    <textarea cols="80" rows="3" name="desc"> <%= @place.desc %> </textarea>
+    <label for="desc">Description:</label>
+    <textarea cols="80" rows="3" name="desc" id="desc"> <%= @place.desc %> </textarea>
   </div>
 
   <input type="submit" name="commit" value="Update Place">
